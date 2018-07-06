@@ -5,38 +5,41 @@
  */
 function linkedListGenerator(){
   let head = null;
-  let tail = null;
-  let prevNode = null;
+  let currentTail = null;
+  let oldTail = null;
 
   function getHead() {
     console.log(head); //Checkout everything inside the head, needs to be modified so it doesn't see next.
   }
 
-  function add(val) {
-    var makeNode = {};
-    makeNode.value = val;
-
-    if(!head) { // going to have to use the function again for tail
-      makeNode.next = null;
-      head = makeNode;
-      prevNode = head;
-    } else {
-      makeNode.next = null;
-      prevNode.next = makeNode; // makeNode has to change the "next" property of the prevNode
-      prevNode = makeNode; // The obj of the prevNode also has to be change so Node 1 doesn't point to Node 3
-    }
-
-    console.log(makeNode); // Return the objects being added
+  function getTail() {
+    return currentTail;
+    //console.log(currentTail);
   }
 
+  function add(val) {
+    let newNode = {};
+    newNode.value = val;
+    newNode.next = null;
+
+    oldTail = currentTail; // Step 1 Store reference point of previous tail
+    currentTail = newNode; // Step 2 Store reference point of current tail
+
+    if(oldTail) {
+      oldTail.next = newNode; // Step 3 make the previous tail point to the current tail
+    }
+
+    if(!head) {
+      head = currentTail; // Keep tracks of what is the head
+    }
+  }
+
+  return {
+    getHead: getHead,
+    getTail: getTail,
+    add: add
+  }
   //Testing happening down here
-  add("ready Player one");
-  add("Player two");
-  add("Player Three");
-  add("player four");
-  add("player five");
-  debugger;
-  getHead();
 }
 
 linkedListGenerator();
