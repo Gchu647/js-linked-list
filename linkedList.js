@@ -44,11 +44,10 @@ function linkedListGenerator(){
 
     // While loop will run if the node.next.value is not null or until it finds the value
     while(currentNode && counter <= index) {
-      console.log("loop: ", counter);
+      //console.log("loop: ", counter);
 
       if(counter === index) {
-        return currentNode;
-        // console.log(currentNode.value);
+        return currentNode; // Returns object that matches the index
       } else {
         currentNode = currentNode.next;
         counter ++;
@@ -57,22 +56,32 @@ function linkedListGenerator(){
 
     return false;
   }
+
+  function remove(index) {
+    let currentNode = get(index);
+    let prevNode = get(index - 1);
+    let nextNode = get(index + 1);
+
+    console.log("Current Node: ", currentNode);
+    console.log("Previous Node: ", prevNode);
+    console.log("Next Node: ", nextNode);
+  }
   
+  /*
   return {
     getHead: getHead,
     getTail: getTail,
     add: add,
-    get: get
+    get: get,
+    remove: remove
   }
+  */
 
   //Testing happening down here
-  /*
   add("Player One");
   add("Player Two");
   add("Player Three");
-  let result = get(2);
-  console.log(result);
-  */
+  remove(1);
 }
 
 linkedListGenerator();
