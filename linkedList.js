@@ -34,43 +34,45 @@ function linkedListGenerator(){
       head = currentTail; // Keep tracks of what is the head
     }
 
+    return currentTail;
     // console.log(currentTail);
   }
 
-  function get(num) {
-    let counter = 1;
+  function get(index) {
+    let counter = 0;
     let currentNode = getHead();
-    console.log("it works!");
 
-    while(currentNode.next !== null && typeof num === "number") {
-      console.log("loop: ", counter);     
+    // While loop will run if the node.next.value is not null or until it finds the value
+    while(currentNode && counter <= index) {
+      console.log("loop: ", counter);
 
-      if(counter === num) {
-        console.log(currentNode.value);
-        break;
+      if(counter === index) {
+        return currentNode;
+        // console.log(currentNode.value);
       } else {
         currentNode = currentNode.next;
         counter ++;
       }
     }
 
-    console.log(currentNode.value);
+    return false;
   }
-
-  /*
+  
   return {
     getHead: getHead,
     getTail: getTail,
     add: add,
     get: get
   }
-  */
 
   //Testing happening down here
+  /*
   add("Player One");
   add("Player Two");
   add("Player Three");
-  get(2);
+  let result = get(2);
+  console.log(result);
+  */
 }
 
 linkedListGenerator();
