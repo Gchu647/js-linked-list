@@ -62,12 +62,23 @@ function linkedListGenerator(){
     let prevNode = get(index - 1);
     let nextNode = get(index + 1);
 
-    console.log("Current Node: ", currentNode);
-    console.log("Previous Node: ", prevNode);
-    console.log("Next Node: ", nextNode);
+    if(!prevNode && currentNode) {
+      head = nextNode; // When your current node is the head
+    } else if(!nextNode && currentNode) {
+      prevNode.next = null; // When you current node is the tail
+      currentTail = prevNode;
+    } else if(currentNode){
+      prevNode.next = nextNode; // Change your previous node to your next node
+    } else {
+      return false;
+    }
+
+    // console.log("Current Node: ", currentNode);
+    // console.log("Previous Node: ", prevNode);
+    // console.log("Next Node: ", nextNode);
   }
   
-  /*
+
   return {
     getHead: getHead,
     getTail: getTail,
@@ -75,13 +86,17 @@ function linkedListGenerator(){
     get: get,
     remove: remove
   }
-  */
+
 
   //Testing happening down here
+  /*
   add("Player One");
   add("Player Two");
   add("Player Three");
   remove(1);
+  let result = get(0);
+  console.log(result);
+  */
 }
 
 linkedListGenerator();
