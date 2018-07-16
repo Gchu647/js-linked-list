@@ -78,13 +78,31 @@ function linkedListGenerator(){
     // console.log("Next Node: ", nextNode);
   }
   
+  // Still need revise and plan scenarios for head and tail
+  function insert(val, index) {
+    console.log("Index", index);
+
+    if(!targNode) {
+      newNode.next = head; //Insert a new node before the head
+    }
+
+    let targNode = get(index-1); //Step 1 find node
+    console.log("targNode: ", targNode);
+    console.log("targNode.next: ", targNode.next);
+    let newNode = {value: val, next: null}; //Step 2 create new node
+    newNode.next = targNode.next; //Step 3 point the property of new node to targNode.next
+    console.log("newNode: ", newNode);
+    targNode.next = newNode; //Step 4 set tarNode.next to the newNode
+  }
+
 
   return {
     getHead: getHead,
     getTail: getTail,
     add: add,
     get: get,
-    remove: remove
+    remove: remove,
+    insert: insert
   }
 
 
@@ -93,7 +111,7 @@ function linkedListGenerator(){
   add("Player One");
   add("Player Two");
   add("Player Three");
-  remove(1);
+  insert();
   let result = get(0);
   console.log(result);
   */
